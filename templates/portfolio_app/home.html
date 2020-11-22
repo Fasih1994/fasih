@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Personal Portfolio
+{% endblock title %}
+
+
+{% block content %}
+<div class="row justify-content-center my-3">
+    <div class="col-3">
+        <img src="{% static 'portfolio_app/profile.jpg' %}" alt="Avatar" class="img-fluid rounded-circle" width="304"
+            height="236">
+    </div>
+</div>
+<div class="row justify-content-center mb-3">
+    <div class="clo-md-9 text-center">
+        <h1 id="hometext" class="font-weight-bold">I am a Python Developer and </br>AI Enthusiast</h1>
+    </div>
+</div>
+<h2 class="mt-5">Portfolio</h2>
+<hr>
+<div class="row">
+    {% for project in portfolio_projects %}
+    <div class="media border p-3 col-lg-4 col-md-6">
+        <div class="media-body">
+
+            {% if project.url %}
+            <a href="{{ project.url }}" target="_blank">
+                <img src="{{ project.image_url }}" class="img-fluid mb-2 mx-auto d-block" alt='This is empty'>
+            </a>
+            {% else %}
+    
+            <img src="{{ project.image_url }}" class="img-fluid mb-2" alt='This is empty'>
+            {% endif %}
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
+    
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
